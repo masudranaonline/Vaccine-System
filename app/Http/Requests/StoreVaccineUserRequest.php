@@ -25,11 +25,11 @@ class StoreVaccineUserRequest extends FormRequest
     {
         return [
             'name'   => 'required|string|max:60',
-            'nid'    => 'required|number|integer|max:20',
+            'nid'    => 'required|integer|max:20',
             'email'  => 'required|string|lowercase|email|max:200',
             'number' => 'required|max:20',
             'center_id' => 'required',
-            // 'status' => 'required',
+            'status' => 'required',
         ];
     }
 }

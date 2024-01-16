@@ -6,6 +6,7 @@ use App\Models\VaccineUser;
 use App\Http\Requests\StoreVaccineUserRequest;
 use App\Http\Requests\UpdateVaccineUserRequest;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 
 class VaccineUserController extends Controller
 {
@@ -30,10 +31,16 @@ class VaccineUserController extends Controller
      */
     public function store(StoreVaccineUserRequest $request)
     {
-
         return $request;
-        VaccineUser::create($request->validated());
-        return back();
+
+       try {
+            VaccineUser::create($request->validated());
+            return back();
+       } catch (\Throwable $th) {
+            throw $th;
+       }
+
+        
     }
 
     /**
